@@ -20,7 +20,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categori.create');
     }
 
     /**
@@ -28,7 +28,12 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request -> all();
+        $request -> validate([
+            'name' => 'required|max:255',
+            'description' => 'nullable|max:255',
+        ]);
+
     }
 
     /**
