@@ -12,7 +12,9 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return view('admin.categori.index');
+        $categories = categories::all();
+
+        return view('admin.categori.index', compact('categories'));
     }
 
     /**
@@ -29,11 +31,18 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         // return $request -> all();
-        $request -> validate([
+        $request->validate([
             'name' => 'required|max:255',
             'description' => 'nullable|max:255',
         ]);
 
+        Categories::create([
+            "name" => $request->name,
+            "description" => $request->description,
+        ]);
+
+
+        return back();
     }
 
     /**
